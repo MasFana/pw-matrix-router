@@ -64,7 +64,7 @@ done
 - Confirm `git remote -v` points at the real repository, and that `Cargo.toml` `repository` and the README clone URL match it.
 - Check that `.gitignore` excludes `target/`, `.codegraph/`, `.agents/`, and `skills-lock.json`.
 - Decide whether the repository should carry the MIT license as written. Changing it later is harder once contributors appear.
-- Publish the first release as `v0.1.0` and mark it as a pre-release, since the audio path has only been verified on one machine.
+- Publish releases as normal releases, so `releases/latest` and stable download links work. Mark a build as a pre-release only when it ships without the smoke test in DEVELOPING.md or when notes say a path is unverified.
 
 ## Release checklist
 
