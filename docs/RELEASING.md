@@ -36,7 +36,7 @@ Social preview: upload `docs/screenshots/router-window-dark.png` in **Settings â
 
 ## Before the first public push
 
-- Confirm `git remote -v` points at the real repository, and that `Cargo.toml` `repository`, `homepage`, and the README clone URL match it.
+- Confirm `git remote -v` points at the real repository, and that `Cargo.toml` `repository` and the README clone URL match it.
 - Check that `.gitignore` excludes `target/`, `.codegraph/`, `.agents/`, and `skills-lock.json`.
 - Decide whether the repository should carry the MIT license as written. Changing it later is harder once contributors appear.
 - Publish the first release as `v0.1.0` and mark it as a pre-release, since the audio path has only been verified on one machine.
