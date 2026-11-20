@@ -33,8 +33,9 @@ sudo apt install pipewire pipewire-pulse pulseaudio-utils libxkbcommon-x11-0 lib
 Build packages:
 
 ```sh
-sudo apt install build-essential pkg-config libxkbcommon-dev libxcb1-dev \
-  libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libvulkan-dev
+sudo apt install build-essential pkg-config libfontconfig1-dev libfreetype-dev \
+  libxkbcommon-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev \
+  libxcb-xfixes0-dev libvulkan-dev
 ```
 
 ## Build and run
