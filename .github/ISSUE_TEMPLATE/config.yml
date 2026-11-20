@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/MasFana/pw-matrix-router/security/advisories/new
+    about: Report a vulnerability privately. Do not open a public issue.
+  - name: Build and smoke test guide
+    url: https://github.com/MasFana/pw-matrix-router/blob/master/docs/DEVELOPING.md
+    about: Read this before reporting a problem that only appears during a build or a manual audio test.

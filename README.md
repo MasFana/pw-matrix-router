@@ -147,7 +147,7 @@ Isolated audio testing, profiling notes, and the steps for a manual smoke test a
 
 ## Contributing
 
-Issues and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Security reports go through [SECURITY.md](SECURITY.md), not the public issue tracker.
+Issues and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before opening a pull request. Security reports go through [SECURITY.md](SECURITY.md), not the public issue tracker.
 
 ## License
 
