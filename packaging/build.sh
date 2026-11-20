@@ -31,7 +31,7 @@ done
 
 ICON="$ROOT/packaging/icons"
 DESKTOP="$ROOT/packaging/io.github.masfana.PwMatrixRouter.desktop"
-METAINFO="$ROOT/packaging/io.github.masfana.PwMatrixRouter.metainfo.xml"
+METAINFO="$ROOT/packaging/io.github.masfana.PwMatrixRouter.appdata.xml"
 MAINTAINER="MasFana <MasFana@users.noreply.github.com>"
 HOMEPAGE="https://github.com/MasFana/pw-matrix-router"
 
@@ -46,7 +46,7 @@ install_data() {
   local prefix=$1 size
   install -Dm755 "$BINARY" "$prefix/usr/bin/pw-matrix-router"
   install -Dm644 "$DESKTOP" "$prefix/usr/share/applications/io.github.masfana.PwMatrixRouter.desktop"
-  install -Dm644 "$METAINFO" "$prefix/usr/share/metainfo/io.github.masfana.PwMatrixRouter.metainfo.xml"
+  install -Dm644 "$METAINFO" "$prefix/usr/share/metainfo/io.github.masfana.PwMatrixRouter.appdata.xml"
   for size in 64 128 256 512; do
     install -Dm644 "$ICON/pw-matrix-router-$size.png" \
       "$prefix/usr/share/icons/hicolor/${size}x${size}/apps/pw-matrix-router.png"
@@ -120,7 +120,7 @@ cp -a ${top}/BUILD/root/. %{buildroot}/
 %files
 /usr/bin/pw-matrix-router
 /usr/share/applications/io.github.masfana.PwMatrixRouter.desktop
-/usr/share/metainfo/io.github.masfana.PwMatrixRouter.metainfo.xml
+/usr/share/metainfo/io.github.masfana.PwMatrixRouter.appdata.xml
 /usr/share/icons/hicolor/64x64/apps/pw-matrix-router.png
 /usr/share/icons/hicolor/128x128/apps/pw-matrix-router.png
 /usr/share/icons/hicolor/256x256/apps/pw-matrix-router.png

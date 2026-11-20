@@ -51,7 +51,7 @@ bash packaging/build.sh --out dist
 
 Each format needs its tool: `dpkg-deb`, `rpmbuild`, and `appimagetool`. Pass `--formats tarball,deb` to build a subset. `APPIMAGETOOL=/path/to/appimagetool` overrides the tool lookup.
 
-Desktop entry, AppStream metadata, and the icon source live in `packaging/`. Regenerate the PNG icons after editing the SVG:
+Desktop entry, AppStream metadata (`*.appdata.xml`, the name AppImage tooling looks for), and the icon source live in `packaging/`. Regenerate the PNG icons after editing the SVG:
 
 ```sh
 for s in 64 128 256 512; do
