@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential pkg-config \
+            libxkbcommon-dev libxkbcommon-x11-dev libxcb1-dev libxcb-render0-dev \
+            libxcb-shape0-dev libxcb-xfixes0-dev libxcb-xkb-dev libvulkan-dev
+
+      - name: Build
+        run: cargo build --release --locked --bin pw-matrix-router
+
+      - name: Package
+        run: |
+          set -euo pipefail
+          name="pw-matrix-router-${GITHUB_REF_NAME}-x86_64-linux"
+          mkdir -p "dist/${name}"
+          cp target/release/pw-matrix-router "dist/${name}/"
+          cp README.md LICENSE CHANGELOG.md "dist/${name}/"
+          cp -r docs "dist/${name}/"
+          tar -C dist -czf "dist/${name}.tar.gz" "${name}"
+          cd dist && sha256sum "${name}.tar.gz" > sha256sums.txt
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: |
+            dist/*.tar.gz
+            dist/sha256sums.txt
+          body: |
+            Binary archive for x86_64 Linux. It links the system X11, xkbcommon, and Vulkan loaders at runtime.
+
+            Runtime requirements: PipeWire, `pactl`, `parec`, `pacat`.
+
+            See CHANGELOG.md for user-visible changes.

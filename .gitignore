@@ -1,0 +1,11 @@
+/target
+/dist
+
+# Local agent and index tooling
+.codegraph/
+.agents/
+skills-lock.json
+
+# OS and editor noise
+.DS_Store
+*.swp

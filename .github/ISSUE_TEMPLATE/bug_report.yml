@@ -1,0 +1,69 @@
+name: Bug report
+description: Report a defect in the router
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Include enough detail to reproduce the problem. Audio bugs need the output rates and the state of the PipeWire graph.
+  - type: input
+    id: version
+    attributes:
+      label: Router version
+      description: Output of `cargo metadata --no-deps --format-version 1 | jq -r .packages[0].version`, or the release tag.
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Distribution and session
+      placeholder: Fedora 42, KDE Plasma, Wayland
+    validations:
+      required: true
+  - type: input
+    id: pipewire
+    attributes:
+      label: PipeWire version
+      description: Output of `pipewire --version`.
+    validations:
+      required: true
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Output devices and rates
+      description: The sinks you routed, their sample rates, and whether any report underruns in the app footer.
+      placeholder: |
+        JadeAudio JA11 at 96000 Hz
+        Ryzen HD Audio at 48000 Hz
+        No underruns during the run
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start the router
+        2. Route both outputs
+        3. Play a 48 kHz stereo track
+        4. Audio stutters on the 44.1 kHz device after about 30 seconds
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Paste the **Audio details** text and relevant `pw-top` or `journalctl --user -u pipewire` lines. Remove anything sensitive.
+      render: text
