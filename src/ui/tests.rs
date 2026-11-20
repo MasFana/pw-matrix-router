@@ -279,10 +279,7 @@ fn controls_follow_outputs_and_errors_open_only_in_audio_details(cx: &mut TestAp
     cx.run_until_parked();
     cx.update_window(handle, |_, window, cx| {
         window.render_frame(cx);
-        assert_eq!(
-            window.find("audio-detail-error").label().as_deref(),
-            Some(warning)
-        );
+        assert_eq!(window.find("audio-detail-error").label(), Some(warning));
         window.press("escape", cx);
     })
     .unwrap();

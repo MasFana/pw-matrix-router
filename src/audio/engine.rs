@@ -1245,10 +1245,10 @@ impl AudioEngine {
         for render in runtime.renders.values() {
             render.live.stop.store(true, Ordering::Release);
         }
-        if let Some(mut capture) = runtime.capture.take() {
-            if let Err(error) = capture.stop() {
-                errors.push(format!("{error:#}"));
-            }
+        if let Some(mut capture) = runtime.capture.take()
+            && let Err(error) = capture.stop()
+        {
+            errors.push(format!("{error:#}"));
         }
         for (_, mut render) in runtime.renders.drain() {
             if let Err(error) = render.stop() {

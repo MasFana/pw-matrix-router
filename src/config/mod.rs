@@ -33,10 +33,10 @@ pub(crate) fn load(path: &Path, import_legacy: bool) -> Result<(PersistentConfig
     }
     if import_legacy {
         let mut candidates = Vec::new();
-        if let Ok(exe) = std::env::current_exe() {
-            if let Some(dir) = exe.parent() {
-                candidates.push(dir.join(LEGACY_NAME));
-            }
+        if let Ok(exe) = std::env::current_exe()
+            && let Some(dir) = exe.parent()
+        {
+            candidates.push(dir.join(LEGACY_NAME));
         }
         if let Ok(cwd) = std::env::current_dir() {
             let candidate = cwd.join(LEGACY_NAME);

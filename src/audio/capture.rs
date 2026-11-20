@@ -89,10 +89,10 @@ impl TelemetryWorker {
 impl Drop for TelemetryWorker {
     fn drop(&mut self) {
         self.sender.take();
-        if let Some(worker) = self.worker.take() {
-            if worker.join().is_err() {
-                tracing::error!("Telemetry thread panicked");
-            }
+        if let Some(worker) = self.worker.take()
+            && worker.join().is_err()
+        {
+            tracing::error!("Telemetry thread panicked");
         }
     }
 }

@@ -74,11 +74,10 @@ pub(crate) fn query_sinks(default: &str, stop: &AtomicBool) -> Result<Vec<Polled
                     .trim()
                     .trim_end_matches('%')
                     .parse::<f32>()
+                    && percent.is_finite()
                 {
-                    if percent.is_finite() {
-                        sum += percent;
-                        count += 1;
-                    }
+                    sum += percent;
+                    count += 1;
                 }
             }
             let volume = if count == 0 {
