@@ -4,6 +4,18 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-20
+
+### Added
+
+- Debian package, RPM package, and AppImage builds, produced by `packaging/build.sh` and attached to each release.
+- Desktop entry, AppStream metadata, and application icon at 64, 128, 256, and 512 pixels.
+- CI now builds every package format on each push, so packaging breaks before a tag.
+
+### Changed
+
+- Release workflow installs the packaging tools and uploads all four formats with a single checksum file.
+
 ## [0.1.0] - 2026-11-20
 
 First public version of the Rust and GPUI application for Linux.
@@ -36,5 +48,6 @@ First public version of the Rust and GPUI application for Linux.
 - The cubic Hermite interpolation module and its tests.
 - Correlation visualization. Balance remains.
 
-[Unreleased]: https://github.com/MasFana/pw-matrix-router/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/MasFana/pw-matrix-router/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/MasFana/pw-matrix-router/releases/tag/v0.1.1
 [0.1.0]: https://github.com/MasFana/pw-matrix-router/releases/tag/v0.1.0

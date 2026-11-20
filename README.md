@@ -38,6 +38,19 @@ sudo apt install build-essential pkg-config libfontconfig1-dev libfreetype-dev \
   libxcb-xfixes0-dev libvulkan-dev
 ```
 
+## Install
+
+Download a package from the [releases page](https://github.com/MasFana/pw-matrix-router/releases):
+
+| Distribution | Package | Install |
+| --- | --- | --- |
+| Debian, Ubuntu, Mint | `pw-matrix-router_<version>_amd64.deb` | `sudo apt install ./pw-matrix-router_*_amd64.deb` |
+| Fedora, openSUSE, RHEL | `pw-matrix-router-<version>-1.x86_64.rpm` | `sudo dnf install ./pw-matrix-router-*.x86_64.rpm` |
+| Any distribution | `pw-matrix-router-<version>-x86_64.AppImage` | `chmod +x pw-matrix-router-*.AppImage` then run it |
+| Manual | `pw-matrix-router-<version>-x86_64-linux.tar.gz` | extract and run `./pw-matrix-router` |
+
+Each release includes `sha256sums.txt`. The packages ship the desktop entry, AppStream metadata, and icons, so the app appears in the desktop menu.
+
 ## Build and run
 
 ```sh

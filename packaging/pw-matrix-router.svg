@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Window: rounded frame with the app's title strip and dark body. -->
+  <rect x="32" y="56" width="448" height="400" rx="40" fill="#0d1117" stroke="#30363d" stroke-width="8"/>
+  <path d="M32 96a40 40 0 0 1 40-40h368a40 40 0 0 1 40 40v28H32z" fill="#161b22"/>
+  <rect x="72" y="86" width="132" height="16" rx="8" fill="#8b949e"/>
+  <rect x="356" y="86" width="84" height="16" rx="8" fill="#30363d"/>
+
+  <!-- Output rows: selected row uses the accent. -->
+  <rect x="72" y="152" width="368" height="26" rx="13" fill="#58a6ff" opacity="0.28"/>
+  <rect x="72" y="200" width="300" height="18" rx="9" fill="#484f58"/>
+  <rect x="72" y="234" width="240" height="18" rx="9" fill="#484f58"/>
+
+  <!-- Stereo meters: filled L, partial R, with peak caps. -->
+  <rect x="72" y="300" width="240" height="20" rx="10" fill="#21262d"/>
+  <rect x="72" y="300" width="196" height="20" rx="10" fill="#58a6ff"/>
+  <rect x="274" y="294" width="8" height="32" rx="4" fill="#e6edf3"/>
+  <rect x="72" y="344" width="240" height="20" rx="10" fill="#21262d"/>
+  <rect x="72" y="344" width="120" height="20" rx="10" fill="#3fb950"/>
+  <rect x="198" y="338" width="8" height="32" rx="4" fill="#e6edf3"/>
+
+  <!-- Spectrum: five bands, varying heights. -->
+  <g fill="#58a6ff">
+    <rect x="344" y="318" width="16" height="46" rx="8"/>
+    <rect x="370" y="288" width="16" height="76" rx="8"/>
+    <rect x="396" y="262" width="16" height="102" rx="8"/>
+    <rect x="422" y="296" width="16" height="68" rx="8"/>
+  </g>
+  <rect x="448" y="332" width="16" height="32" rx="8" fill="#484f58"/>
+</svg>

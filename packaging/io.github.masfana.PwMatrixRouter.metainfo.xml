@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.masfana.PwMatrixRouter</id>
+  <name>PipeWire Matrix Router</name>
+  <summary>Route one stereo source to several PipeWire outputs at their own sample rates</summary>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>
+      PipeWire Matrix Router captures a 48 kHz stereo virtual sink and renders it to every
+      enabled output, resampling to each device's own rate. Each output has independent
+      volume, mute, and extra delay. The window shows an output table, stereo meters with
+      peak hold, a 16-band spectrum, and a balance bar.
+    </p>
+    <p>
+      The router runs as a normal user process. It moves the default sink to its hub,
+      restores the previous default on a clean exit, and unloads only the modules it created.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.masfana.PwMatrixRouter.desktop</launchable>
+  <developer id="io.github.masfana">
+    <name>MasFana</name>
+  </developer>
+  <url type="homepage">https://github.com/MasFana/pw-matrix-router</url>
+  <url type="bugtracker">https://github.com/MasFana/pw-matrix-router/issues</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Output table, stereo meters, spectrum, and balance bar</caption>
+      <image type="source">https://raw.githubusercontent.com/MasFana/pw-matrix-router/master/docs/screenshots/router-window-dark.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="0.1.1" date="2026-11-20">
+      <description>
+        <p>Adds .deb, .rpm, and AppImage packages.</p>
+      </description>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1"/>
+</component>

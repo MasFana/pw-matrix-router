@@ -1,6 +1,6 @@
 [package]
 name = "pw-matrix-router"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "PipeWire audio router for Linux: one stereo source to many outputs at their own sample rates"
 repository = "https://github.com/MasFana/pw-matrix-router"

@@ -19,7 +19,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            build-essential pkg-config \
+            build-essential pkg-config rpm \
             libfontconfig1-dev libfreetype-dev \
             libxkbcommon-dev libxkbcommon-x11-dev libxcb1-dev libxcb-render0-dev \
             libxcb-shape0-dev libxcb-xfixes0-dev libxcb-xkb-dev libvulkan-dev
@@ -27,27 +27,38 @@ jobs:
       - name: Build
         run: cargo build --release --locked --bin pw-matrix-router
 
-      - name: Package
+      - name: Build packages
         run: |
           set -euo pipefail
-          name="pw-matrix-router-${GITHUB_REF_NAME}-x86_64-linux"
-          mkdir -p "dist/${name}"
-          cp target/release/pw-matrix-router "dist/${name}/"
-          cp README.md LICENSE CHANGELOG.md "dist/${name}/"
-          cp -r docs "dist/${name}/"
-          tar -C dist -czf "dist/${name}.tar.gz" "${name}"
-          cd dist && sha256sum "${name}.tar.gz" > sha256sums.txt
+          tool="$RUNNER_TEMP/appimagetool"
+          curl -fsSL -o "$tool" \
+            https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x "$tool"
+          APPIMAGETOOL="$tool" bash packaging/build.sh
+          ls -l dist
 
       - name: Publish release
         uses: softprops/action-gh-release@v3
         with:
           draft: true
           files: |
+            dist/*.deb
+            dist/*.rpm
+            dist/*.AppImage
             dist/*.tar.gz
             dist/sha256sums.txt
           body: |
-            Binary archive for x86_64 Linux. It links the system X11, xkbcommon, and Vulkan loaders at runtime.
+            Linux builds for x86_64. Pick the format your distribution uses:
 
-            Runtime requirements: PipeWire, `pactl`, `parec`, `pacat`.
+            | Format | File | Install |
+            | --- | --- | --- |
+            | Debian, Ubuntu, Mint | `pw-matrix-router_<version>_amd64.deb` | `sudo apt install ./file.deb` |
+            | Fedora, openSUSE, RHEL | `pw-matrix-router-<version>-1.x86_64.rpm` | `sudo dnf install ./file.rpm` |
+            | Any distribution | `pw-matrix-router-<version>-x86_64.AppImage` | `chmod +x file.AppImage && ./file.AppImage` |
+            | Any distribution, manual | `pw-matrix-router-<version>-x86_64-linux.tar.gz` | extract, run `./pw-matrix-router` |
+
+            Runtime requirements: PipeWire, and `pactl`, `parec`, `pacat` from the PulseAudio utilities. AppStream metadata and desktop entry are included in the deb, rpm, and AppImage.
+
+            `sha256sums.txt` covers every asset.
 
             See CHANGELOG.md for user-visible changes.

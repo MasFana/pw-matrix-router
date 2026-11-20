@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=PipeWire Matrix Router
+GenericName=Audio Router
+Comment=Route one stereo source to several PipeWire outputs at their own sample rates
+Exec=pw-matrix-router
+Icon=pw-matrix-router
+Terminal=false
+Categories=AudioVideo;Audio;
+Keywords=pipewire;audio;router;resampler;virtual sink;
+StartupNotify=true
+StartupWMClass=pw-matrix-router

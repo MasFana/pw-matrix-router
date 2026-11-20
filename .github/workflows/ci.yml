@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            build-essential pkg-config xvfb \
+            build-essential pkg-config xvfb rpm \
             libfontconfig1-dev libfreetype-dev \
             libxkbcommon-dev libxkbcommon-x11-dev libxcb1-dev libxcb-render0-dev \
             libxcb-shape0-dev libxcb-xfixes0-dev libxcb-xkb-dev libvulkan-dev
@@ -51,3 +51,29 @@ jobs:
 
       - name: Build release binary
         run: cargo build --release --locked --bin pw-matrix-router
+
+      - name: Build packages
+        run: |
+          set -euo pipefail
+          tool="$RUNNER_TEMP/appimagetool"
+          curl -fsSL -o "$tool" \
+            https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x "$tool"
+          APPIMAGETOOL="$tool" bash packaging/build.sh
+
+      - name: Inspect packages
+        run: |
+          set -euo pipefail
+          ls -l dist
+          test -f dist/*.deb
+          test -f dist/*.rpm
+          test -f dist/*.AppImage
+          test -f dist/*.tar.gz
+          (cd dist && sha256sum -c sha256sums.txt)
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v5
+        with:
+          name: packages
+          path: dist/*
+          if-no-files-found: error
