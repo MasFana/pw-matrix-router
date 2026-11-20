@@ -34,22 +34,23 @@ fn open(
 }
 
 fn endpoints() -> EngineSnapshot {
-    let mut snapshot = EngineSnapshot::default();
-    snapshot.capturing = true;
-    snapshot.running = true;
-    snapshot.master_volume = 1.;
-    snapshot.target_floor_ms = 12;
+    let mut snapshot = EngineSnapshot {
+        capturing: true,
+        running: true,
+        master_volume: 1.,
+        target_floor_ms: 12,
+        ..Default::default()
+    };
     snapshot.endpoints = ["sink-a", "sink-b", "sink-c"]
         .into_iter()
-        .map(|id| {
-            let mut endpoint = EndpointSnapshot::default();
-            endpoint.id = id.to_owned();
-            endpoint.name = id.to_owned();
-            endpoint.volume = 1.;
-            endpoint.sample_rate = 48000;
-            endpoint.channels = 2;
-            endpoint.bits = 32;
-            endpoint
+        .map(|id| EndpointSnapshot {
+            id: id.to_owned(),
+            name: id.to_owned(),
+            volume: 1.,
+            sample_rate: 48000,
+            channels: 2,
+            bits: 32,
+            ..Default::default()
         })
         .collect();
     snapshot

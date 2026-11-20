@@ -85,9 +85,11 @@ mod tests {
 
     #[test]
     fn invalid_values_cannot_reach_audio_atoms() {
-        let mut cfg = PersistentConfig::default();
-        cfg.master_volume = f32::NAN;
-        cfg.target_floor_ms = 0;
+        let mut cfg = PersistentConfig {
+            master_volume: f32::NAN,
+            target_floor_ms: 0,
+            ..Default::default()
+        };
         cfg.endpoints.insert(
             "device".into(),
             EndpointSetting {

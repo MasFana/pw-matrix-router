@@ -184,10 +184,12 @@ mod tests {
 
     #[test]
     fn latency_updates_reuse_unaffected_row_cells() {
-        let mut endpoint = EndpointSnapshot::default();
-        endpoint.id = "output-a".into();
-        endpoint.name = "Hardware output".into();
-        endpoint.latency_ms = 12.;
+        let endpoint = EndpointSnapshot {
+            id: "output-a".into(),
+            name: "Hardware output".into(),
+            latency_ms: 12.,
+            ..Default::default()
+        };
         let mut table = OutputTable::new(px(16.));
         table.replace(&[], std::slice::from_ref(&endpoint));
         let rows = table.rows.as_ptr();
@@ -206,13 +208,17 @@ mod tests {
 
     #[test]
     fn row_replacement_handles_reordering_and_disconnect() {
-        let mut a = EndpointSnapshot::default();
-        a.id = "a".into();
-        a.name = "Output A".into();
-        let mut b = a.clone();
-        b.id = "b".into();
-        b.name = "Output B".into();
-        b.muted = true;
+        let a = EndpointSnapshot {
+            id: "a".into(),
+            name: "Output A".into(),
+            ..Default::default()
+        };
+        let b = EndpointSnapshot {
+            id: "b".into(),
+            name: "Output B".into(),
+            muted: true,
+            ..Default::default()
+        };
         let mut table = OutputTable::new(px(16.));
         table.replace(&[], &[a.clone(), b.clone()]);
         table.replace(&[a.clone(), b.clone()], &[b.clone(), a.clone()]);
